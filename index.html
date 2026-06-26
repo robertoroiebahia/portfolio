@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Roberto Bahia - AI-Native CRO Lead</title>
+<style>
+  :root{
+    --ink:#15181d;
+    --muted:#5b6470;
+    --line:#e6e8ec;
+    --navy:#0e2a47;
+    --navy-soft:#16365a;
+    --chip:#f5f7f9;
+    --fire:#e0701a;
+    --good:#1f7a4d;
+    --maxw:1080px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;color:var(--ink);background:#fff;line-height:1.55;-webkit-font-smoothing:antialiased}
+  a{color:inherit}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+
+  /* Nav */
+  nav{position:sticky;top:0;z-index:50;background:rgba(255,255,255,0.88);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  .nav-in{max-width:var(--maxw);margin:0 auto;padding:14px 24px;display:flex;align-items:center;justify-content:space-between}
+  .mono{font-weight:800;letter-spacing:0.5px;font-size:15px}
+  .mono span{color:var(--fire)}
+  .nav-links{display:flex;gap:26px;align-items:center;font-size:14px;font-weight:500}
+  .nav-links a{text-decoration:none;color:var(--muted)}
+  .nav-links a:hover{color:var(--ink)}
+  .btn{display:inline-block;padding:9px 16px;border-radius:8px;font-size:14px;font-weight:600;text-decoration:none;transition:.15s}
+  .btn-primary{background:var(--navy);color:#fff}
+  .btn-primary:hover{background:var(--navy-soft)}
+  .btn-ghost{border:1px solid var(--line);color:var(--ink)}
+  .nav-links .btn-primary{color:#fff}
+  @media(max-width:760px){.nav-links a:not(.btn){display:none}}
+
+  /* Hero */
+  .hero{padding:84px 0 36px}
+  .eyebrow{font-size:13px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--fire)}
+  .hero h1{font-size:clamp(30px,5vw,52px);line-height:1.08;letter-spacing:-1px;margin:16px 0 18px;font-weight:800;max-width:16ch}
+  .hero p.lead{font-size:clamp(16px,2.2vw,20px);color:var(--muted);max-width:60ch}
+  .hero-cta{margin-top:28px;display:flex;gap:12px;flex-wrap:wrap}
+
+  /* Stat band */
+  .band{border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin-top:46px}
+  .stats{display:grid;grid-template-columns:repeat(4,1fr)}
+  .stat{padding:26px 22px;border-right:1px solid var(--line)}
+  .stat:last-child{border-right:none}
+  .stat .n{font-size:clamp(22px,3vw,30px);font-weight:800;color:var(--navy);letter-spacing:-0.5px}
+  .stat .l{font-size:13px;color:var(--muted);margin-top:4px}
+  @media(max-width:760px){.stats{grid-template-columns:repeat(2,1fr)}.stat:nth-child(2){border-right:none}.stat:nth-child(1),.stat:nth-child(2){border-bottom:1px solid var(--line)}}
+
+  /* Sections */
+  section.block{padding:66px 0}
+  .sec-head{display:flex;align-items:baseline;gap:14px;margin-bottom:8px}
+  .sec-head h2{font-size:13px;font-weight:800;letter-spacing:1.6px;text-transform:uppercase;color:var(--navy)}
+  .sec-head .rule{flex:1;height:1px;background:var(--line)}
+  .sec-sub{color:var(--muted);font-size:15px;margin-bottom:24px;max-width:64ch}
+
+  /* Aggregate strip */
+  .agg{display:flex;border:1px solid var(--line);border-radius:12px;overflow:hidden;margin-bottom:26px}
+  .agg-item{flex:1;padding:16px 18px;border-right:1px solid var(--line)}
+  .agg-item:last-child{border-right:none}
+  .agg-item .an{display:block;font-size:21px;font-weight:800;color:var(--navy);letter-spacing:-0.5px}
+  .agg-item .al{font-size:12px;color:var(--muted);margin-top:2px}
+  @media(max-width:600px){.agg{flex-wrap:wrap}.agg-item{flex:1 1 50%;border-bottom:1px solid var(--line)}.agg-item:nth-child(2){border-right:none}}
+
+  /* Filter tabs */
+  .filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:30px}
+  .filters button{font-family:inherit;font-size:13px;font-weight:600;padding:8px 15px;border-radius:30px;border:1px solid var(--line);background:#fff;color:var(--muted);cursor:pointer;transition:.15s}
+  .filters button:hover{color:var(--ink);border-color:#cfd4da}
+  .filters button.active{background:var(--navy);color:#fff;border-color:var(--navy)}
+  .hint{font-size:12.5px;color:var(--muted);margin:-14px 0 26px}
+
+  /* Category block + full lead case */
+  .catblock{margin-bottom:30px}
+  .case{border:1px solid var(--line);border-radius:14px;overflow:hidden}
+  .case-top{padding:28px 32px 6px}
+  .tags{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:13px}
+  .tag{font-size:11.5px;font-weight:600;padding:4px 11px;border-radius:30px;background:var(--chip);color:var(--navy)}
+  .tag.fire{background:#fbeee2;color:var(--fire)}
+  .case h3{font-size:clamp(19px,2.5vw,25px);font-weight:800;letter-spacing:-0.4px;line-height:1.2;max-width:26ch}
+  .case-grid{display:grid;grid-template-columns:1.12fr 0.88fr;gap:32px;padding:20px 32px 30px;align-items:start}
+  @media(max-width:820px){.case-grid{grid-template-columns:1fr;gap:22px}}
+  .step{margin-bottom:16px}
+  .step .k{font-size:11.5px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--fire);margin-bottom:3px}
+  .step p{font-size:14.5px;color:#33383f}
+  .step.research .k{color:var(--navy)}
+  .step.outcome .k{color:var(--good)}
+  .results{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin:4px 0 16px}
+  .res{border:1px solid var(--line);border-radius:10px;padding:11px 12px}
+  .res .v{font-size:18px;font-weight:800;color:var(--good);letter-spacing:-0.4px}
+  .res .m{font-size:11.5px;color:var(--ink);font-weight:600;margin-top:1px}
+  .res .c{font-size:10.5px;color:var(--muted)}
+  .res.head-metric{border-color:#f0c9a6;background:#fdf6ef}
+  .res.head-metric .v{color:var(--fire)}
+
+  /* Control vs Variant panel */
+  .ba{background:var(--chip);border-radius:12px;padding:16px}
+  .ba-title{font-size:11.5px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-bottom:11px;text-align:center}
+  .cv{display:flex;flex-direction:column;gap:10px}
+  .cv-panel{background:#fff;border:1px solid var(--line);border-radius:10px;padding:12px 14px}
+  .cv-panel.variant{border-color:var(--fire);background:#fdf6ef}
+  .cv-panel .cvk{font-size:10px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
+  .cv-panel.variant .cvk{color:var(--fire)}
+  .cv-panel .cvt{font-size:12.5px;color:#33383f}
+  /* accordion mock (PDP lead) */
+  .ba-cols{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .mock{background:#fff;border:1px solid var(--line);border-radius:10px;padding:12px 10px}
+  .mock .cap{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--muted);text-align:center;margin-bottom:10px}
+  .row{display:flex;align-items:center;justify-content:space-between;font-size:12.5px;padding:8px 9px;border:1px solid var(--line);border-radius:7px;margin-bottom:7px;color:#3a4048}
+  .row .plus{color:var(--muted)}
+  .row.moved{border-color:var(--fire);background:#fdf2e8;color:var(--fire);font-weight:700}
+  .row.dim{opacity:.55}
+  .ba-note{font-size:11.5px;color:var(--muted);text-align:center;margin-top:11px}
+  .arrow-up{font-size:11px}
+
+  /* mini-mock primitives (control vs variant) */
+  .mk{background:#fff;border:1px solid var(--line);border-radius:9px;padding:11px 10px}
+  .mk .cap{font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--muted);text-align:center;margin-bottom:9px}
+  .mk-img{background:#eef1f4;border-radius:6px;height:44px;display:flex;align-items:center;justify-content:center;color:#aeb6c0;font-size:16px;margin-bottom:7px}
+  .mk-line{height:7px;border-radius:4px;background:#e7eaee;margin-bottom:6px}
+  .mk-line.sm{width:62%}
+  .mk-line.hl{background:var(--fire);opacity:.88}
+  .mk-btn{font-size:9px;font-weight:700;text-align:center;padding:5px;border-radius:5px;background:var(--navy);color:#fff;margin-top:6px}
+  .mk-pill{display:inline-block;font-size:9px;font-weight:600;padding:3px 7px;border-radius:20px;border:1px solid var(--line);color:#3a4048;margin:0 3px 3px 0}
+  .mk-pill.hl{background:#fdf2e8;border-color:var(--fire);color:var(--fire)}
+  .mk-bar{display:flex;align-items:center;flex-wrap:wrap;padding:6px;border:1px solid var(--line);border-radius:6px;margin-bottom:8px;min-height:30px}
+  .mk-bar.hl{border-color:var(--fire);background:#fdf6ef}
+  .mk-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+  .mk-cell{height:32px;background:#eef1f4;border-radius:5px}
+  .mk-cell.hl{background:#fdf2e8;border:1px solid var(--fire);display:flex;align-items:center;justify-content:center;font-size:8px;font-weight:700;color:var(--fire);text-align:center;line-height:1.1;padding:2px}
+  .mk-row{display:flex;align-items:center;justify-content:space-between;font-size:10px;padding:6px 7px;border:1px solid var(--line);border-radius:6px;margin-bottom:6px;color:#3a4048}
+  .mk-row.hl{border-color:var(--fire);background:#fdf6ef;color:var(--fire);font-weight:600}
+  .mk-toggle{font-size:9.5px;font-weight:700;padding:7px 8px;border:1px solid var(--fire);background:#fdf6ef;border-radius:6px;color:var(--fire);margin-bottom:6px}
+  .mk-sub{font-size:8.5px;color:var(--muted);margin-top:2px;font-weight:500}
+  .mk-cancel{font-size:9px;font-weight:700;text-align:center;padding:5px;border-radius:5px;background:#fff;border:1px solid #d9b3b3;color:#b23b3b;margin-top:6px}
+
+  /* quiet hover polish */
+  .case,.tcard{transition:border-color .15s ease, box-shadow .15s ease}
+  .tcard:hover{border-color:#cfd4da;box-shadow:0 3px 14px rgba(14,42,71,.06)}
+
+  /* Compact test cards */
+  .compactwrap{margin-top:18px}
+  .tgrid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  @media(max-width:760px){.tgrid{grid-template-columns:1fr}}
+  .tcard{border:1px solid var(--line);border-radius:14px;padding:22px 24px;display:flex;flex-direction:column}
+  .tcard-top{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:13px}
+  .tt-left{display:flex;gap:7px;align-items:center;flex-wrap:wrap}
+  .cat-tag{font-size:11px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;color:var(--navy);background:var(--chip);padding:4px 10px;border-radius:20px}
+  .brand-pill{font-size:10px;font-weight:600;letter-spacing:.3px;padding:3px 9px;border-radius:20px;border:1px solid var(--line);color:var(--muted);text-transform:uppercase}
+  .badge{font-size:10.5px;font-weight:700;letter-spacing:.4px;padding:4px 10px;border-radius:20px;text-transform:uppercase;white-space:nowrap}
+  .badge.win{background:#e8f3ec;color:var(--good)}
+  .badge.dir{background:#fbf1e2;color:#9a6b18}
+  .tcard h3{font-size:17px;font-weight:800;letter-spacing:-0.3px;line-height:1.26;margin-bottom:9px}
+  .tcard .ctx{font-size:13.5px;color:#3a4048;margin-bottom:15px}
+  .tchips{display:flex;gap:8px;flex-wrap:wrap;margin-top:auto}
+  .tchip{flex:1;min-width:84px;border:1px solid var(--line);border-radius:9px;padding:9px 10px}
+  .tchip .v{font-size:16px;font-weight:800;color:var(--good);letter-spacing:-0.3px;line-height:1.1}
+  .tchip.soft .v{color:var(--muted)}
+  .tchip .m{font-size:11px;color:var(--ink);font-weight:600;margin-top:2px}
+  .tchip .c{font-size:10px;color:var(--muted)}
+  .tcard .foot{font-size:12px;color:var(--muted);margin-top:14px;border-top:1px solid var(--line);padding-top:11px}
+
+  /* AI systems */
+  .ai-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:18px}
+  @media(max-width:820px){.ai-grid{grid-template-columns:1fr}}
+  .ai{border:1px solid var(--line);border-left:3px solid var(--navy);border-radius:12px;padding:22px}
+  .ai .t{font-weight:800;font-size:16px;margin-bottom:4px}
+  .ai .s{font-size:12px;color:var(--navy);margin-bottom:10px}
+  .ai .d{font-size:13.5px;color:#3a4048}
+  .ai .d b{color:var(--ink)}
+
+  /* About / contact */
+  .about{background:var(--navy);color:#fff;border-radius:18px;padding:48px 44px;display:grid;grid-template-columns:1.4fr 1fr;gap:40px;align-items:center}
+  @media(max-width:760px){.about{grid-template-columns:1fr;padding:34px 26px}}
+  .about h2{font-size:26px;font-weight:800;letter-spacing:-0.5px;margin-bottom:14px}
+  .about p{color:#c4d2e2;font-size:15px}
+  .about .links{display:flex;flex-direction:column;gap:10px}
+  .about .links a{display:flex;justify-content:space-between;padding:13px 16px;border:1px solid rgba(255,255,255,.18);border-radius:10px;text-decoration:none;color:#fff;font-size:14px;font-weight:600}
+  .about .links a:hover{background:rgba(255,255,255,.08)}
+  .about .links a span{color:#8fb0d6}
+
+  footer{padding:34px 0 50px;text-align:center;color:var(--muted);font-size:13px}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-in">
+    <div class="mono">ROBERTO BAHIA<span>.</span></div>
+    <div class="nav-links">
+      <a href="#work">Work</a>
+      <a href="#ai">AI Systems</a>
+      <a href="#about">About</a>
+      <a class="btn btn-primary" href="mailto:robertoroiebahia@gmail.com">Get in touch</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero wrap">
+  <div class="eyebrow">AI-Native CRO Lead</div>
+  <h1>I turn customer research into revenue, and build the AI that does it faster.</h1>
+  <p class="lead">Senior CRO Lead with 5+ years running experimentation programs for DTC ecommerce brands doing $10M to $250M. I pair rigorous research with my own AI tooling to find where funnels leak, why, and what to do about it.</p>
+  <div class="hero-cta">
+    <a class="btn btn-primary" href="#work">See the experiments</a>
+    <a class="btn btn-ghost" href="https://www.linkedin.com/in/roberto-bahia/">LinkedIn</a>
+  </div>
+</header>
+
+<div class="band">
+  <div class="wrap stats">
+    <div class="stat"><div class="n">$3.8M+</div><div class="l">Incremental revenue generated</div></div>
+    <div class="stat"><div class="n">78x</div><div class="l">ROI on CRO investment</div></div>
+    <div class="stat"><div class="n">2.98 &rarr; 5.23%</div><div class="l">Sitewide conversion lift</div></div>
+    <div class="stat"><div class="n">0%</div><div class="l">Churn across 8 accounts</div></div>
+  </div>
+</div>
+
+<section class="block wrap" id="work">
+  <div class="sec-head"><h2>Selected Work</h2><div class="rule"></div></div>
+  <p class="sec-sub">Real A/B tests I designed and ran for DTC brands, anonymized by category. Each one was research-led, and most shipped to production. The pattern repeats: find the metric on fire, get to the why, then test the fix.</p>
+
+  <div class="filters" id="filters">
+    <button class="active" data-filter="all">All work</button>
+    <button data-filter="pdp">Product Page</button>
+    <button data-filter="plp">Collection Page</button>
+    <button data-filter="homepage">Homepage</button>
+    <button data-filter="quiz">Quiz</button>
+    <button data-filter="cart">Cart</button>
+    <button data-filter="bundle">Bundle</button>
+    <button data-filter="subscription">Subscription</button>
+  </div>
+  <p class="hint">Showing one lead case study per category. Pick a category to see the full case plus every other test in it.</p>
+
+  <!-- ============ PDP ============ -->
+  <div class="catblock" data-cat="pdp">
+    <article class="case">
+      <div class="case-top">
+        <div class="tags"><span class="tag">Product Page</span><span class="tag">Pet nutrition</span><span class="tag fire">Metric on fire: Add-to-Cart</span></div>
+        <h3>Leading the PDP with "how to use it" lifted add-to-cart 7.54%</h3>
+      </div>
+      <div class="case-grid">
+        <div>
+          <div class="step research"><div class="k">The signal</div><p>The Feeding Guide accordion earned a strong click rate despite sitting dead last, below Description, Nutrition, and Ingredients. Shoppers were hunting for practical "how do I use this" info and having to dig for it.</p></div>
+          <div class="step"><div class="k">Hypothesis</div><p>If practical usage context appears right after "what it is," hesitation drops and more shoppers add to cart. So I moved the Feeding Guide to second, directly under Description.</p></div>
+          <div class="results">
+            <div class="res head-metric"><div class="v">+7.54%</div><div class="m">Add-to-cart</div><div class="c">90% conf</div></div>
+            <div class="res"><div class="v">+9.1%</div><div class="m">Conversion</div><div class="c">87% conf</div></div>
+            <div class="res"><div class="v">+19.8%</div><div class="m">Rev / user</div><div class="c">96% conf</div></div>
+          </div>
+          <div class="step outcome"><div class="k">What it proved</div><p>Desktop drove it and new users responded most. Attention shifted up to the Feeding Guide while lower accordions lost clicks, confirming shoppers act on the first practical info they see rather than reading every section.</p></div>
+        </div>
+        <div class="ba">
+          <div class="ba-title">PDP accordion order</div>
+          <div class="ba-cols">
+            <div class="mock">
+              <div class="cap">Control</div>
+              <div class="row">Description <span class="plus">+</span></div>
+              <div class="row dim">Nutrition <span class="plus">+</span></div>
+              <div class="row dim">Ingredients <span class="plus">+</span></div>
+              <div class="row dim">Feeding Guide <span class="plus">+</span></div>
+            </div>
+            <div class="mock">
+              <div class="cap">Variant</div>
+              <div class="row">Description <span class="plus">+</span></div>
+              <div class="row moved">Feeding Guide <span class="arrow-up">&uarr;</span></div>
+              <div class="row">Nutrition <span class="plus">+</span></div>
+              <div class="row">Ingredients <span class="plus">+</span></div>
+            </div>
+          </div>
+          <div class="ba-note">Feeding Guide moved from last to second, right after Description.</div>
+        </div>
+      </div>
+    </article>
+
+    <div class="compactwrap" style="display:none">
+      <div class="tgrid">
+
+        <div class="tcard">
+          <div class="tcard-top"><div class="tt-left"><span class="cat-tag">Product Page</span><span class="brand-pill">Pet nutrition</span></div><span class="badge win">Implemented</span></div>
+          <h3>Removing redundant value props lifted add-to-cart 14%</h3>
+          <div class="ctx">Description scroll depth was only 41%, so product details sat buried under a value-prop block below the buy button. I hid the block to surface details higher. Scroll depth rose to 55%.</div>
+          <div class="tchips">
+            <div class="tchip"><div class="v">+14.1%</div><div class="m">Add-to-cart</div><div class="c">98% conf</div></div>
+            <div class="tchip"><div class="v">+24.0%</div><div class="m">Conversion</div><div class="c">98% conf</div></div>
+            <div class="tchip"><div class="v">+24.6%</div><div class="m">Rev / user</div><div class="c">95% conf</div></div>
+          </div>
+          <div class="foot">~$16K/mo forecast · new users led</div>
+        </div>
+
+        <div class="tcard">
+          <div class="tcard-top"><div class="tt-left"><span class="cat-tag">Product Page</span><span class="brand-pill">Pain relief</span></div><span class="badge win">Implemented</span></div>
+          <h3>Real-image thumbnails beat color swatches on mobile</h3>
+          <div class="ctx">Thumbnail clicks sat near zero and swatches gave a poor sense of the product. I swapped them for real product-image thumbnails plus clearer breadcrumbs and review visibility.</div>
+          <div class="tchips">
+            <div class="tchip"><div class="v">+12.1%</div><div class="m">Conversion</div><div class="c">95% conf</div></div>
+            <div class="tchip"><div class="v">+7.2%</div><div class="m">Add-to-cart</div><div class="c">91% conf</div></div>
+            <div class="tchip"><div class="v">+9.7%</div><div class="m">Rev / user</div><div class="c">83% conf</div></div>
+          </div>
+          <div class="foot">~$46K/mo forecast · new users led</div>
+        </div>
+
+        <div class="tcard">
+          <div class="tcard-top"><div class="tt-left"><span class="cat-tag">Product Page</span><span class="brand-pill">Pain relief</span></div><span class="badge win">Implemented</span></div>
+          <h3>Moving the membership upsell into its own section lifted attach 70%</h3>
+          <div class="ctx">The membership was pitched near the buy box and required a separate page to buy. I moved it into a benefit-framed section lower on the page, scored on the purchase rather than a click.</div>
+          <div class="tchips">
+            <div class="tchip"><div class="v">+70.1%</div><div class="m">Membership / visitor</div><div class="c">99% conf</div></div>
+            <div class="tchip"><div class="v">+74.3%</div><div class="m">Sub rev / visitor</div><div class="c">97% conf</div></div>
+            <div class="tchip"><div class="v">Flat</div><div class="m">Device sales</div><div class="c">no harm</div></div>
+          </div>
+          <div class="foot">~$4.6K/mo forecast · device sales held</div>
+        </div>
+
+        <div class="tcard">
+          <div class="tcard-top"><div class="tt-left"><span class="cat-tag">Product Page</span><span class="brand-pill">Pet treats</span></div><span class="badge win">Implemented</span></div>
+          <h3>Product-level cashback below the buy button grew membership 26%</h3>
+          <div class="ctx">To grow the paid membership, I showed the dollar cashback earnable on that specific product right below add-to-cart, paired with a join CTA.</div>
+          <div class="tchips">
+            <div class="tchip"><div class="v">+26.5%</div><div class="m">Membership rate</div><div class="c">95% conf</div></div>
+            <div class="tchip"><div class="v">+5.0%</div><div class="m">Rev / user</div><div class="c">90% conf</div></div>
+          </div>
+          <div class="foot">~$37K/mo forecast · mobile led</div>
+        </div>
+
+        <div class="tcard">
+          <div class="tcard-top"><div class="tt-left"><span class="cat-tag">Product Page</span><span class="brand-pill">Pain relief</span></div><span class="badge win">Implemented</span></div>
+          <h3>Pain-specific PDP messaging lifted conversion and spend</h3>
+          <div class="ctx">The page educated shoppers instead of validating their pain. I swapped the generic benefits for an interactive pain-point identifier (back, hip, plantar fasciitis) with condition-specific copy.</div>
+          <div class="tchips">
+            <div class="tchip"><div class="v">+13.2%</div><div class="m">Conversion</div><div class="c">93% conf</div></div>
+            <div class="tchip"><div class="v">+14.4%</div><div class="m">Rev / user</div><div class="c">86% conf</div></div>
+            <div class="tchip soft"><div class="v">+4.3%</div><div class="m">Add-to-cart</div><div class="c">directional</div></div>
+          </div>
+          <div class="foot">~$49K/mo forecast · mobile led</div>
+        </div>
+
+        <div class="tcard">
+          <div class="tcard-top"><div class="tt-left"><span class="cat-tag">Product Page</span><span class="brand-pill">Pet nutrition</span></div><span class="badge win">Implemented</span></div>
+          <h3>Four scannable benefit tiles lifted add-to-cart 11%</h3>
+          <div class="ctx">Replaced a single narrative benefit block with four icon-led reason tiles, each with its own image and a short line of proof.</div>
+          <div class="tchips">
+            <div class="tchip"><div class="v">+11.4%</div><div class="m">Add-to-cart</div><div class="c">99% conf</div></div>
+            <div class="tchip"><div class="v">+11.8%</div><div class="m">Conversion</div><div class="c">97% conf</div></div>
+          </div>
+          <div class="foot">~$13K/mo forecast · mobile led</div>
+        </div>
+
+        <div class="tcard">
+          <div class="tcard-top"><div class="tt-left"><span class="cat-tag">Product Page</span><span class="brand-pill">Pet treats</span></div><span class="badge win">Implemented</span></div>
+          <h3>Value props by the subscribe button lifted orders and subs</h3>
+          <div class="ctx">I placed three subscription value props directly under the subscribe selector, next to the buy button, so the case for subscribing sat right at the decision.</div>
+          <div class="tchips">
+            <div class="tchip"><div class="v">+4.45%</div><div class="m">Conversion</div><div class="c">96% conf</div></div>
+            <div class="tchip"><div class="v">+9.75%</div><div class="m">Rev / user</div><div class="c">99% conf</div></div>
+            <div class="tchip soft"><div class="v">+12.8%</div><div class="m">Sub rate</div><div class="c">directional</div></div>
+          </div>
+          <div class="foot">~$30K/mo forecast</div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ PLP ============ -->
+  <div class="catblock" data-cat="plp">
+    <article class="case">
+      <div class="case-top">
+        <div class="tags"><span class="tag">Collection Page</span><span class="tag">Pet treats</span><span class="tag fire">Metric on fire: Add-to-Cart</span></div>
+        <h3>Surfacing collection filters lifted add-to-cart 5.4%</h3>
+      </div>
+      <div class="case-grid">
+        <div>
+          <div class="step research"><div class="k">The signal</div><p>Heatmaps showed shoppers had to click to open the filters, then pick one. That extra step was friction on the way to finding a product on the collection page.</p></div>
+          <div class="step"><div class="k">Hypothesis</div><p>If the category filters are visible inline on the page, shoppers reach the product they want faster and add to cart more.</p></div>
+          <div class="results">
+            <div class="res head-metric"><div class="v">+5.4%</div><div class="m">Add-to-cart</div><div class="c">98% conf</div></div>
+            <div class="res"><div class="v">+8.6%</div><div class="m">Rev / user</div><div class="c">99% conf</div></div>
+            <div class="res"><div class="v">+3.4%</div><div class="m">Cart size</div><div class="c">91% conf</div></div>
+          </div>
+          <div class="step outcome"><div class="k">What it proved</div><p>A second iteration pinned the filter bar on scroll, adding incremental cart-size gains for high-intent shoppers. The barrier was discovery friction, not demand.</p></div>
+        </div>
+        <div class="ba">
+          <div class="ba-title">Collection page filters</div>
+          <div class="ba-cols">
+            <div class="mk">
+              <div class="cap">Control</div>
+              <div class="mk-bar"><span class="mk-pill">Filters &#9662;</span></div>
+              <div class="mk-grid"><div class="mk-cell"></div><div class="mk-cell"></div><div class="mk-cell"></div><div class="mk-cell"></div></div>
+            </div>
+            <div class="mk">
+              <div class="cap">Variant</div>
+              <div class="mk-bar hl"><span class="mk-pill hl">Beef</span><span class="mk-pill">Chicken</span><span class="mk-pill">Bundles</span></div>
+              <div class="mk-grid"><div class="mk-cell"></div><div class="mk-cell"></div><div class="mk-cell"></div><div class="mk-cell"></div></div>
+            </div>
+          </div>
+          <div class="ba-note">Filters surface inline, then pin to the top on scroll.</div>
+        </div>
+      </div>
+    </article>
+
+    <div class="compactwrap" style="display:none">
+      <div class="tgrid">
+
+        <div class="tcard">
+          <div class="tcard-top"><div class="tt-left"><span class="cat-tag">Collection Page</span><span class="brand-pill">Pet treats</span></div><span class="badge win">Implemented</span></div>
+          <h3>Shrinking the mobile banner lifted add-to-cart and spend</h3>
+          <div class="ctx">On mobile the value-prop banner ate the entire first view, pushing the product grid below the fold. I shrank it while keeping the value props, surfacing more of the grid (and price) above the fold.</div>
+          <div class="tchips">
+            <div class="tchip"><div class="v">+4.3%</div><div class="m">Add-to-cart</div><div class="c">96% conf</div></div>
+            <div class="tchip"><div class="v">+8.9%</div><div class="m">Rev / user</div><div class="c">97% conf</div></div>
+          </div>
+          <div class="foot">~$61.5K/mo forecast · mobile</div>
+        </div>
+
+        <div class="tcard">
+          <div class="tcard-top"><div class="tt-left"><span class="cat-tag">Collection Page</span><span class="brand-pill">Pet treats</span></div><span class="badge win">Implemented</span></div>
+          <h3>Surfacing bundles on the category page lifted revenue per user</h3>
+          <div class="ctx">Bundles were not exposed on the category page at all. I inserted them into the grid to test incremental revenue without cannibalizing single-item sales.</div>
+          <div class="tchips">
+            <div class="tchip"><div class="v">+8.0%</div><div class="m">Rev / user (mobile)</div><div class="c">98% conf</div></div>
+            <div class="tchip"><div class="v">+4.3%</div><div class="m">Conversion</div><div class="c">92% conf</div></div>
+            <div class="tchip"><div class="v">+3.2%</div><div class="m">PDP views</div><div class="c">98% conf</div></div>
+          </div>
+          <div class="foot">~$65K/mo forecast · mobile won, desktop flagged for iteration</div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ HOMEPAGE ============ -->
+  <div class="catblock" data-cat="homepage">
+    <article class="case">
+      <div class="case-top">
+        <div class="tags"><span class="tag">Homepage</span><span class="tag">Pain relief</span><span class="tag fire">Metric on fire: Conversion</span></div>
+        <h3>Clear hero copy plus product-in-use imagery lifted conversion 36%</h3>
+      </div>
+      <div class="case-grid">
+        <div>
+          <div class="step research"><div class="k">The signal</div><p>The homepage hero opened with an abstract autoplay video that never said what the product was or how it worked, leaving arriving visitors unoriented.</p></div>
+          <div class="step"><div class="k">Hypothesis</div><p>If the hero states the value clearly and shows the product in use, more visitors understand the offer and engage.</p></div>
+          <div class="results">
+            <div class="res head-metric"><div class="v">+36.4%</div><div class="m">Conversion</div><div class="c">97% conf</div></div>
+            <div class="res"><div class="v">+30.9%</div><div class="m">Rev / user</div><div class="c">88% conf</div></div>
+            <div class="res"><div class="v">+13.3%</div><div class="m">Add-to-cart</div><div class="c">88% conf</div></div>
+          </div>
+          <div class="step outcome"><div class="k">What it proved</div><p>Mobile drove it. The lift confirmed a behavioral split: arriving visitors need orientation, while high-intent users deeper in the funnel want proof and depth.</p></div>
+        </div>
+        <div class="ba">
+          <div class="ba-title">Homepage hero</div>
+          <div class="ba-cols">
+            <div class="mk">
+              <div class="cap">Control</div>
+              <div class="mk-img" style="height:64px">&#9658;</div>
+              <div class="mk-sub" style="text-align:center">Autoplay video, no message</div>
+            </div>
+            <div class="mk">
+              <div class="cap">Variant</div>
+              <div class="mk-line hl"></div>
+              <div class="mk-line sm"></div>
+              <div class="mk-img" style="height:34px;margin-top:4px"></div>
+              <div class="mk-btn">Shop now</div>
+            </div>
+          </div>
+          <div class="ba-note">Clear headline and product-in-use imagery, in place of the video.</div>
+        </div>
+      </div>
+    </article>
+
+    <div class="compactwrap" style="display:none">
+      <div class="tgrid">
+
+        <div class="tcard">
+          <div class="tcard-top"><div class="tt-left"><span class="cat-tag">Homepage</span><span class="brand-pill">Pet nutrition</span></div><span class="badge win">Implemented</span></div>
+          <h3>A family-health homepage section lifted revenue per user 12%</h3>
+          <div class="ctx">Swapped an animal-benefit section for a "coop to table" family-health story, pairing an emotional image with social proof and family-framed value props.</div>
+          <div class="tchips">
+            <div class="tchip"><div class="v">+16.9%</div><div class="m">Add-to-cart</div><div class="c">99% conf</div></div>
+            <div class="tchip"><div class="v">+11.7%</div><div class="m">Rev / user</div><div class="c">94% conf</div></div>
+            <div class="tchip"><div class="v">+3.2%</div><div class="m">PDP views</div><div class="c">88% conf</div></div>
+          </div>
+          <div class="foot">~$16.6K/mo forecast · desktop led</div>
+        </div>
+
+        <div class="tcard">
+          <div class="tcard-top"><div class="tt-left"><span class="cat-tag">Homepage</span><span class="brand-pill">Pet treats</span></div><span class="badge win">Implemented</span></div>
+          <h3>One customer word in the hero lifted revenue per user 8%</h3>
+          <div class="ctx">"Addictive" was the single most-used word across reviews and surveys. I worked it into the hero copy. Clicks held flat, but spend rose, a clean voice-of-customer win.</div>
+          <div class="tchips">
+            <div class="tchip"><div class="v">+8.1%</div><div class="m">Rev / user</div><div class="c">99% conf</div></div>
+            <div class="tchip soft"><div class="v">Flat</div><div class="m">Hero clicks</div><div class="c">no change</div></div>
+          </div>
+          <div class="foot">~$99K/mo forecast · desktop led</div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ QUIZ ============ -->
+  <div class="catblock" data-cat="quiz">
+    <article class="case">
+      <div class="case-top">
+        <div class="tags"><span class="tag">Quiz</span><span class="tag">Pain relief</span><span class="tag fire">Metric on fire: Quiz Conversion</span></div>
+        <h3>Rebuilding the quiz around pain lifted quiz conversion 29%</h3>
+      </div>
+      <div class="case-grid">
+        <div>
+          <div class="step research"><div class="k">The signal</div><p>Drop-off hit 23% on question one, which led with product-spec questions instead of the shopper's actual problem.</p></div>
+          <div class="step"><div class="k">Hypothesis</div><p>If the quiz opens with the customer's pain instead of specs, more people engage and convert, even if a few fewer start.</p></div>
+          <div class="results">
+            <div class="res head-metric"><div class="v">+29.4%</div><div class="m">Quiz conversion</div><div class="c">99% conf</div></div>
+            <div class="res"><div class="v">+9.1%</div><div class="m">Quiz starts</div><div class="c">98% conf</div></div>
+            <div class="res"><div class="v">+6.9%</div><div class="m">Completions / visitor</div><div class="c">99%+ conf</div></div>
+          </div>
+          <div class="step outcome"><div class="k">What it proved</div><p>v1 reworked the questions and won on conversion but cost some starts. v2 added a value-framed intro that won those starts back. The barrier was motivational, not mechanical.</p></div>
+        </div>
+        <div class="ba">
+          <div class="ba-title">Quiz, question one</div>
+          <div class="ba-cols">
+            <div class="mk">
+              <div class="cap">Control</div>
+              <div class="mk-row" style="font-weight:600;color:var(--ink)">What's your height?</div>
+              <div class="mk-row">Under 5'6"</div>
+              <div class="mk-row">5'6" and up</div>
+            </div>
+            <div class="mk">
+              <div class="cap">Variant</div>
+              <div class="mk-row hl">Where's your pain?</div>
+              <div class="mk-row">Back</div>
+              <div class="mk-row">Hip</div>
+              <div class="mk-row">Feet</div>
+            </div>
+          </div>
+          <div class="ba-note">Lead with the problem, not the product spec.</div>
+        </div>
+      </div>
+    </article>
+  </div>
+
+  <!-- ============ CART ============ -->
+  <div class="catblock" data-cat="cart">
+    <article class="case">
+      <div class="case-top">
+        <div class="tags"><span class="tag">Cart</span><span class="tag">Pet treats</span><span class="tag fire">Metric on fire: Subscription Rate</span></div>
+        <h3>A cleaner in-cart subscribe option more than doubled subscriptions</h3>
+      </div>
+      <div class="case-grid">
+        <div>
+          <div class="step research"><div class="k">The signal</div><p>Subscription value was under-emphasized in the cart, where shoppers decide mid-journey. They want the option but will not hunt for it.</p></div>
+          <div class="step"><div class="k">Hypothesis</div><p>If the subscribe-and-save benefit is prominent and simple in the cart, latent subscription intent converts.</p></div>
+          <div class="results">
+            <div class="res head-metric"><div class="v">+147.9%</div><div class="m">Subscription rate</div><div class="c">100% conf</div></div>
+            <div class="res"><div class="v">Held</div><div class="m">Conversion</div><div class="c">no harm</div></div>
+            <div class="res"><div class="v">Held</div><div class="m">Rev / user</div><div class="c">no harm</div></div>
+          </div>
+          <div class="step outcome"><div class="k">What it proved</div><p>v1 repeated a cluttered benefit block on every item and tanked conversion. v2 condensed it to a single inline toggle, capturing the same intent with no guardrail loss. Presentation decided whether it was shippable.</p></div>
+        </div>
+        <div class="ba">
+          <div class="ba-title">In-cart subscribe option</div>
+          <div class="ba-cols">
+            <div class="mk">
+              <div class="cap">Control</div>
+              <div class="mk-row">Product <span>$39</span></div>
+              <div class="mk-row">Subscribe?</div>
+              <div class="mk-btn">Checkout</div>
+            </div>
+            <div class="mk">
+              <div class="cap">Variant</div>
+              <div class="mk-row">Product <span>$39</span></div>
+              <div class="mk-toggle">Subscribe &amp; Save 10%<div class="mk-sub">Free shipping · cancel anytime</div></div>
+              <div class="mk-btn">Checkout</div>
+            </div>
+          </div>
+          <div class="ba-note">One clean toggle, surfacing the benefit at the decision.</div>
+        </div>
+      </div>
+    </article>
+
+    <div class="compactwrap" style="display:none">
+      <div class="tgrid">
+
+        <div class="tcard">
+          <div class="tcard-top"><div class="tt-left"><span class="cat-tag">Cart</span><span class="brand-pill">Pet nutrition</span></div><span class="badge win">Implemented</span></div>
+          <h3>Condensing the cart subscription upsell lifted conversion 11%</h3>
+          <div class="ctx">Collapsed a bulky multi-line subscribe-and-save block into one scannable line of value props, cutting friction in the slide-out cart, especially on mobile.</div>
+          <div class="tchips">
+            <div class="tchip"><div class="v">+11.3%</div><div class="m">Conversion</div><div class="c">95% conf</div></div>
+            <div class="tchip"><div class="v">+18.8%</div><div class="m">One-time CVR</div><div class="c">93% conf</div></div>
+          </div>
+          <div class="foot">~$10.8K/mo forecast · returning users led</div>
+        </div>
+
+        <div class="tcard">
+          <div class="tcard-top"><div class="tt-left"><span class="cat-tag">Cart</span><span class="brand-pill">Pet treats</span></div><span class="badge win">Implemented</span></div>
+          <h3>Showing earned cashback in the cart grew membership 22%</h3>
+          <div class="ctx">The in-cart membership offer had no visible incentive. I surfaced the credits earned from the purchase, making the value concrete at the decision point.</div>
+          <div class="tchips">
+            <div class="tchip"><div class="v">+22.4%</div><div class="m">Membership rate</div><div class="c">95% conf</div></div>
+            <div class="tchip"><div class="v">+14.6%</div><div class="m">Rev / user</div><div class="c">83% conf</div></div>
+            <div class="tchip"><div class="v">+106%</div><div class="m">Offer clicks</div><div class="c">100% conf</div></div>
+          </div>
+          <div class="foot">~$19.8K/mo forecast · desktop led</div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ BUNDLE ============ -->
+  <div class="catblock" data-cat="bundle">
+    <article class="case">
+      <div class="case-top">
+        <div class="tags"><span class="tag">Bundle</span><span class="tag">Pet nutrition</span><span class="tag fire">Metric on fire: Revenue / visitor</span></div>
+        <h3>A Bundle-and-Save card on the collection page lifted revenue per visitor 11%</h3>
+      </div>
+      <div class="case-grid">
+        <div>
+          <div class="step research"><div class="k">The signal</div><p>Research showed awareness, not rejection, was the barrier. The build-your-own-bundle offer was barely visible, with under 2% of visits reaching it.</p></div>
+          <div class="step"><div class="k">Hypothesis</div><p>If a prominent bundle card sits in the product grid, more shoppers discover bundles and build bigger carts.</p></div>
+          <div class="results">
+            <div class="res head-metric"><div class="v">+11.1%</div><div class="m">Rev / visitor</div><div class="c">87% conf</div></div>
+            <div class="res"><div class="v">+347%</div><div class="m">Bundle visits</div><div class="c">100% conf</div></div>
+            <div class="res"><div class="v">+237%</div><div class="m">Bundle conversion</div><div class="c">97% conf</div></div>
+          </div>
+          <div class="step outcome"><div class="k">What it proved</div><p>Campaign traffic responded most. Making the offer visible, not rebuilding it, was the lever that moved revenue.</p></div>
+        </div>
+        <div class="ba">
+          <div class="ba-title">Product grid</div>
+          <div class="ba-cols">
+            <div class="mk">
+              <div class="cap">Control</div>
+              <div class="mk-grid"><div class="mk-cell"></div><div class="mk-cell"></div><div class="mk-cell"></div><div class="mk-cell"></div></div>
+            </div>
+            <div class="mk">
+              <div class="cap">Variant</div>
+              <div class="mk-grid"><div class="mk-cell"></div><div class="mk-cell hl">Bundle &amp; Save 25%</div><div class="mk-cell"></div><div class="mk-cell"></div></div>
+            </div>
+          </div>
+          <div class="ba-note">A Bundle-and-Save card placed right in the grid.</div>
+        </div>
+      </div>
+    </article>
+
+    <div class="compactwrap" style="display:none">
+      <div class="tgrid">
+
+        <div class="tcard">
+          <div class="tcard-top"><div class="tt-left"><span class="cat-tag">Bundle</span><span class="brand-pill">Pet nutrition</span></div><span class="badge dir">Directional</span></div>
+          <h3>Clear bundle controls lifted bundle adds 65%</h3>
+          <div class="ctx">Added a variant selector, a quantity control, and an explicit Add-to-Bundle button to the bundle builder. A strong early signal on a deliberately small first sample.</div>
+          <div class="tchips">
+            <div class="tchip soft"><div class="v">+65%</div><div class="m">Bundle adds</div><div class="c">94% conf</div></div>
+            <div class="tchip soft"><div class="v">+42.7%</div><div class="m">Rev / user</div><div class="c">86% conf</div></div>
+            <div class="tchip soft"><div class="v">+23.8%</div><div class="m">Conversion</div><div class="c">81% conf</div></div>
+          </div>
+          <div class="foot">~$4.5K/mo forecast · early read</div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ SUBSCRIPTION ============ -->
+  <div class="catblock" data-cat="subscription">
+    <article class="case">
+      <div class="case-top">
+        <div class="tags"><span class="tag">Subscription</span><span class="tag">Pet nutrition</span><span class="tag fire">Metric on fire: Save Rate</span></div>
+        <h3>Offering skip and frequency options grew the save rate 56%</h3>
+      </div>
+      <div class="case-grid">
+        <div>
+          <div class="step research"><div class="k">The signal</div><p>Many subscribers cancel temporarily, not permanently, but the cancel flow surfaced no alternatives before the cancel action.</p></div>
+          <div class="step"><div class="k">Hypothesis</div><p>If the cancel flow proactively offers skip, frequency change, and swaps, fewer subscribers cancel outright.</p></div>
+          <div class="results">
+            <div class="res head-metric"><div class="v">+56.1%</div><div class="m">Save rate</div><div class="c">100% conf</div></div>
+          </div>
+          <div class="step outcome"><div class="k">What it proved</div><p>Given clear, lower-commitment options at the cancel moment, many subscribers adjust their plan instead of leaving outright.</p></div>
+        </div>
+        <div class="ba">
+          <div class="ba-title">Cancellation flow</div>
+          <div class="ba-cols">
+            <div class="mk">
+              <div class="cap">Control</div>
+              <div class="mk-row">Reason for leaving &#9662;</div>
+              <div class="mk-cancel">Cancel subscription</div>
+            </div>
+            <div class="mk">
+              <div class="cap">Variant</div>
+              <div class="mk-row hl">Skip a delivery</div>
+              <div class="mk-row hl">Change frequency</div>
+              <div class="mk-row">Swap product</div>
+              <div class="mk-cancel">Cancel subscription</div>
+            </div>
+          </div>
+          <div class="ba-note">Offer the lower-commitment options before the cancel action.</div>
+        </div>
+      </div>
+    </article>
+
+    <div class="compactwrap" style="display:none">
+      <div class="tgrid">
+
+        <div class="tcard">
+          <div class="tcard-top"><div class="tt-left"><span class="cat-tag">Subscription</span><span class="brand-pill">Pain relief</span></div><span class="badge win">Implemented</span></div>
+          <h3>Reason-matched save offers lifted the cancellation save rate</h3>
+          <div class="ctx">Most cancellations were timing problems, not value problems. I mapped a save offer to each reason: a pause for timing issues, a discount only as a fallback for price.</div>
+          <div class="tchips">
+            <div class="tchip"><div class="v">+215%</div><div class="m">Save rate</div></div>
+            <div class="tchip"><div class="v">+232%</div><div class="m">Monthly recurring rev</div></div>
+          </div>
+          <div class="foot">~$1.2K/mo forecast · matching offer to reason was the lever</div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<section class="block wrap" id="ai">
+  <div class="sec-head"><h2>AI Systems I've Built</h2><div class="rule"></div></div>
+  <p class="sec-sub">I build my own tooling to compound what one CRO lead can do, from research to a shipped page.</p>
+  <div class="ai-grid">
+    <div class="ai">
+      <div class="t">Multi-Agent Landing Page System</div>
+      <div class="s">Python · Claude API · multi-agent orchestration</div>
+      <div class="d">End-to-end pipeline from brief to a production Replo/Liquid build. Its first live page became the top paid-social destination for a furniture brand at <b>9.35x ROAS</b> and about half the homepage's cost-per-conversion.</div>
+    </div>
+    <div class="ai">
+      <div class="t">Notion AI Research Co-Pilot</div>
+      <div class="s">Claude + OpenAI APIs · RAG</div>
+      <div class="d">A retrieval system over a research database of <b>200-300 CRO insights</b>, so I can query across every study at once and track how findings change over time, instead of digging through pages by hand.</div>
+    </div>
+    <div class="ai">
+      <div class="t">CRO Co-Pilot</div>
+      <div class="s">web scraping · guided LLM analysis</div>
+      <div class="d">A prototype that scrapes any site and runs a structured, CRO-focused audit to speed up first-pass landing-page and PDP diagnosis.</div>
+    </div>
+  </div>
+</section>
+
+<section class="block wrap" id="about">
+  <div class="about">
+    <div>
+      <h2>Let's talk conversion.</h2>
+      <p>If you're a DTC brand or growth team thinking about conversion, retention, or how to actually put AI to work in your funnel, I'm always happy to talk.</p>
+    </div>
+    <div class="links">
+      <a href="mailto:robertoroiebahia@gmail.com">Email <span>robertoroiebahia@gmail.com</span></a>
+      <a href="https://www.linkedin.com/in/roberto-bahia/">LinkedIn <span>/in/roberto-bahia</span></a>
+    </div>
+  </div>
+</section>
+
+<footer>Roberto Bahia · AI-Native CRO Lead · Remote</footer>
+
+<script>
+(function(){
+  var filters=document.getElementById('filters');
+  var blocks=document.querySelectorAll('.catblock');
+  function apply(f){
+    blocks.forEach(function(cb){
+      var cat=cb.getAttribute('data-cat');
+      var cw=cb.querySelector('.compactwrap');
+      if(f==='all'){ cb.style.display=''; if(cw)cw.style.display='none'; }
+      else if(cat===f){ cb.style.display=''; if(cw)cw.style.display=''; }
+      else { cb.style.display='none'; }
+    });
+  }
+  filters.addEventListener('click',function(e){
+    var b=e.target.closest('button'); if(!b)return;
+    filters.querySelectorAll('button').forEach(function(x){x.classList.remove('active')});
+    b.classList.add('active');
+    apply(b.getAttribute('data-filter'));
+  });
+  apply('all');
+})();
+</script>
+
+</body>
+</html>
