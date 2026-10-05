@@ -139,13 +139,51 @@
   .mk-sub{font-size:8.5px;color:var(--muted);margin-top:2px;font-weight:500}
   .mk-cancel{font-size:9px;font-weight:700;text-align:center;padding:5px;border-radius:5px;background:#fff;border:1px solid #d9b3b3;color:#b23b3b;margin-top:6px}
 
+  /* Real screenshots: phone frames */
+  .ph{background:#1b1f26;border-radius:22px;padding:7px;box-shadow:0 8px 24px rgba(14,42,71,.14)}
+  .ph img{display:block;width:100%;aspect-ratio:390/844;object-fit:cover;object-position:top;border-radius:16px;background:#fff}
+  .ph.crop img{aspect-ratio:auto}
+  .shots{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .shots .cap{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--muted);text-align:center;margin-bottom:8px}
+  .shots .cap.v{color:var(--fire)}
+  .tshots{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:0 auto 16px;max-width:380px;width:100%}
+  .tshots .ph{border-radius:14px;padding:4px;box-shadow:0 4px 14px rgba(14,42,71,.12)}
+  .tshots .ph img{border-radius:11px}
+  .tshots .cap{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--muted);text-align:center;margin-bottom:6px}
+  .tshots .cap.v{color:var(--fire)}
+  .badge.loss{background:#fbe9e7;color:#b23b3b}
+  .badge.flat{background:#eef1f4;color:#5b6470}
+  .tchip.down .v,.res.down .v{color:#b23b3b}
+  .brand-pill.named{border-color:var(--navy);color:var(--navy)}
+  .tag.named{background:#e9eef5}
+  .anon{font-size:11px;color:var(--muted);text-align:center;margin-top:9px}
+  .dk{border:1px solid var(--line);border-radius:8px;overflow:hidden;background:#fff;box-shadow:0 4px 14px rgba(14,42,71,.10)}
+  .dk img{display:block;width:100%}
+  .tshots.wide{max-width:none;grid-template-columns:1fr 1fr}
+
+  /* Landing pages */
+  .lp-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+  @media(max-width:900px){.lp-grid{grid-template-columns:1fr 1fr}}
+  @media(max-width:600px){.lp-grid{grid-template-columns:1fr}}
+  .lp{border:1px solid var(--line);border-radius:14px;padding:18px 18px 16px;display:flex;flex-direction:column;transition:border-color .15s ease, box-shadow .15s ease}
+  .lp:hover{border-color:#cfd4da;box-shadow:0 3px 14px rgba(14,42,71,.06)}
+  .lp .ph{margin:0 auto 16px;max-width:250px;width:100%}
+  .lp .lp-tags{display:flex;gap:7px;align-items:center;flex-wrap:wrap;margin-bottom:8px}
+  .lp h3{font-size:16px;font-weight:800;letter-spacing:-0.3px;line-height:1.25;margin-bottom:7px}
+  .lp .d{font-size:13.5px;color:#3a4048}
+  .lp .r{margin-top:12px;font-size:12.5px;color:var(--good);font-weight:700}
+  .lp .r.soft{color:var(--muted);font-weight:600}
+  .lp .foot{margin-top:auto;padding-top:12px;border-top:1px solid var(--line);font-size:12px;color:var(--muted);display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap}
+  .lp .foot a{color:var(--navy);font-weight:600;text-decoration:none}
+  .lp .foot a:hover{text-decoration:underline}
+
   /* quiet hover polish */
   .case,.tcard{transition:border-color .15s ease, box-shadow .15s ease}
   .tcard:hover{border-color:#cfd4da;box-shadow:0 3px 14px rgba(14,42,71,.06)}
 
   /* Compact test cards */
   .compactwrap{margin-top:18px}
-  .tgrid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  .tgrid{display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:start}
   @media(max-width:760px){.tgrid{grid-template-columns:1fr}}
   .tcard{border:1px solid var(--line);border-radius:14px;padding:22px 24px;display:flex;flex-direction:column}
   .tcard-top{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:13px}
@@ -194,6 +232,7 @@
     <div class="mono">ROBERTO BAHIA<span>.</span></div>
     <div class="nav-links">
       <a href="#work">Work</a>
+      <a href="#pages">Landing pages</a>
       <a href="#ai">AI Systems</a>
       <a href="#about">About</a>
       <a class="btn btn-primary" href="mailto:robertoroiebahia@gmail.com">Get in touch</a>
@@ -222,10 +261,11 @@
 
 <section class="block wrap" id="work">
   <div class="sec-head"><h2>Selected Work</h2><div class="rule"></div></div>
-  <p class="sec-sub">Real A/B tests I designed and ran for DTC brands, anonymized by category. Each one was research-led, and most shipped to production. The pattern repeats: find the metric on fire, get to the why, then test the fix.</p>
+  <p class="sec-sub">Real A/B tests I designed and ran for DTC brands. Polar Hair Care, where I lead CRO, is shown by name with real screenshots. Agency clients are anonymized by category, with brand marks pixelated. Wins, losses and flats are all here. The losses taught me as much. The pattern repeats: find the metric on fire, get to the why, then test the fix.</p>
 
   <div class="filters" id="filters">
     <button class="active" data-filter="all">All work</button>
+    <button data-filter="lp">Landing Page</button>
     <button data-filter="pdp">Product Page</button>
     <button data-filter="plp">Collection Page</button>
     <button data-filter="homepage">Homepage</button>
@@ -235,6 +275,68 @@
     <button data-filter="subscription">Subscription</button>
   </div>
   <p class="hint">Showing one lead case study per category. Pick a category to see the full case plus every other test in it.</p>
+
+  <!-- ============ LANDING PAGE ============ -->
+  <div class="catblock" data-cat="lp">
+    <article class="case">
+      <div class="case-top">
+        <div class="tags"><span class="tag">Landing Page</span><span class="tag named">Polar Hair Care</span><span class="tag fire">Metric on fire: Listicle to PDP drop-off</span></div>
+        <h3>Putting the buy box on the listicle lifted revenue per visitor 12.8%</h3>
+      </div>
+      <div class="case-grid">
+        <div>
+          <div class="step research"><div class="k">The signal</div><p>The top paid-social listicle did the selling and then sent everyone to the product page to buy. Only about a quarter of listicle sessions got there, and the product page converted around 8% of those. Most of the intent the page built was lost on the way to the cart.</p></div>
+          <div class="step"><div class="k">Hypothesis</div><p>If people can buy where they are, a page load and a decision drop out of the funnel. I rebuilt the product page's buy box as theme snippets (gallery, price, shade picker, bottle cards, the rewards ladder, add to cart) and placed it after the customer results, with every CTA on the page scrolling to it.</p></div>
+          <div class="results">
+            <div class="res head-metric"><div class="v">+12.8%</div><div class="m">Rev / visitor</div><div class="c">above 99.9%, Shoplift</div></div>
+            <div class="res"><div class="v">+8.2%</div><div class="m">Conversion</div><div class="c">3.04% to 3.29%</div></div>
+            <div class="res"><div class="v">+17%</div><div class="m">Add-to-cart</div><div class="c">day-5 read</div></div>
+          </div>
+          <div class="step outcome"><div class="k">What it proved</div><p>Desktop and returning visitors moved most. A user-level cross-read in GA came in flatter (+3.5% revenue per user) because the variant lost more GA tracking on iPhone. So I stamped the page into the cart attributes and read the holdout from Shopify orders instead. Called a winner. It is now the evergreen page, running with a 90/10 holdout, and the base for the next tests.</p></div>
+        </div>
+        <div class="ba">
+          <div class="ba-title">Listicle, bottom of the page</div>
+          <div class="shots">
+            <div><div class="cap">Control</div><div class="ph"><img src="assets/polar-ab-lp-2-2-control.webp" alt="Control: the listicle's offer block with a button to the product page" loading="lazy"></div></div>
+            <div><div class="cap v">Variant</div><div class="ph"><img src="assets/polar-ab-lp-2-2-variant.webp" alt="Variant: the product page buy box embedded in the listicle" loading="lazy"></div></div>
+          </div>
+          <div class="ba-note">Same listicle. The variant carries the full buy box in place of the link out.</div>
+        </div>
+      </div>
+    </article>
+
+    <div class="compactwrap" style="display:none">
+      <div class="tgrid">
+        <div class="tcard">
+          <div class="tcard-top"><div class="tt-left"><span class="cat-tag">Landing Page</span><span class="brand-pill">Pet nutrition</span></div><span class="badge dir">Directional, implementing</span></div>
+          <h3>An egg-outcomes headline from the customer survey lifted new-visitor conversion 16.5%</h3>
+          <div class="tshots">
+            <div><div class="cap">Control</div><div class="ph"><img src="assets/enavi-ab-lp-headline-control.webp" alt="Control hero: a headline about feed labels" loading="lazy"></div></div>
+            <div><div class="cap v">Variant</div><div class="ph"><img src="assets/enavi-ab-lp-headline-variant.webp" alt="Variant hero: strong shells, rich yolks, consistent laying" loading="lazy"></div></div>
+          </div>
+          <div class="ctx">The hero led with a feed-label complaint. In the voice-of-customer survey, half of the positive reports were about eggs, and egg reporters spent 11% more per order. The variant headline named the outcomes: strong shells, rich yolks, consistent laying.</div>
+          <div class="tchips">
+            <div class="tchip"><div class="v">+7.6%</div><div class="m">Conversion, all</div><div class="c">82% conf</div></div>
+            <div class="tchip"><div class="v">+16.5%</div><div class="m">Conversion, new visitors</div><div class="c">93% conf</div></div>
+            <div class="tchip"><div class="v">+11.7%</div><div class="m">First subscriptions</div><div class="c">84% conf</div></div>
+          </div>
+          <div class="foot">37 days · 13K users · shipping as the default headline while the next iteration is built</div>
+        </div>
+
+        <div class="tcard">
+          <div class="tcard-top"><div class="tt-left"><span class="cat-tag">Landing Page</span><span class="brand-pill">Meat snacks</span></div><span class="badge dir">Directional win</span></div>
+          <h3>Sending cold paid traffic to a purpose-built LP instead of the PDP lifted revenue per visitor 34%</h3>
+          <div class="ctx">Paid social bound for the ribeye product page was split-URL tested against a ribeye landing page I built: offer up top, reviews, a buy box, and a first-order discount the PDP did not carry. New visitors carried the conversion lift, returning visitors the basket lift.</div>
+          <div class="tchips">
+            <div class="tchip"><div class="v">+34.2%</div><div class="m">Rev / visitor</div><div class="c">90% prob</div></div>
+            <div class="tchip"><div class="v">+23.4%</div><div class="m">Order value</div><div class="c">90% prob</div></div>
+            <div class="tchip"><div class="v">+24.3%</div><div class="m">Checkout starts</div><div class="c">96% prob</div></div>
+          </div>
+          <div class="foot">13 days · 4K visitors, 99% mobile · the LP carried a first-order offer the PDP did not, so page and offer were tested together</div>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- ============ PDP ============ -->
   <div class="catblock" data-cat="pdp">
@@ -279,6 +381,102 @@
 
     <div class="compactwrap" style="display:none">
       <div class="tgrid">
+
+        <div class="tcard">
+          <div class="tcard-top"><div class="tt-left"><span class="cat-tag">Product Page</span><span class="brand-pill named">Polar Hair Care</span></div><span class="badge win">Implemented</span></div>
+          <h3>A gamified reward ladder on the buy box lifted revenue per visitor 2.6%</h3>
+          <div class="tshots">
+            <div><div class="cap">Control</div><div class="ph"><img src="assets/polar-ab-pdp-1-1-control.webp" alt="Control buy box with plain quantity breaks" loading="lazy"></div></div>
+            <div><div class="cap v">Variant</div><div class="ph"><img src="assets/polar-ab-pdp-1-1-variant.webp" alt="Variant buy box with the two-rung reward ladder" loading="lazy"></div></div>
+          </div>
+          <div class="ctx">Heatmaps showed visitors who touched the offer box bought 3.6x more often and spent 23% more, with an order value within 1% of the 3-bottle total. Only 31% of sessions scrolled far enough to see it. I rebuilt the box as a two-rung ladder (free shipping at 2 bottles, a free conditioner at 3) that fills as you add, and left the guarantee under it untouched. 2-bottle orders went from 21% to 26% of orders.</div>
+          <div class="tchips">
+            <div class="tchip"><div class="v">+2.6%</div><div class="m">Rev / visitor</div><div class="c">90.7% conf</div></div>
+            <div class="tchip"><div class="v">+3.0%</div><div class="m">Add-to-cart</div><div class="c">99.8% conf</div></div>
+            <div class="tchip"><div class="v">+1.6%</div><div class="m">Order value</div><div class="c">99% conf</div></div>
+          </div>
+          <div class="foot">181K visitors · 7 days · now the default product page and the base for every test after it</div>
+        </div>
+
+        <div class="tcard">
+          <div class="tcard-top"><div class="tt-left"><span class="cat-tag">Product Page</span><span class="brand-pill named">Polar Hair Care</span></div><span class="badge loss">Loss, learned</span></div>
+          <h3>Pre-selecting 2 bottles cut add-to-cart 21.6%</h3>
+          <div class="tshots">
+            <div><div class="cap">Control</div><div class="ph"><img src="assets/polar-ab-pdp-3-1-control.webp" alt="Control: 1 bottle selected at the single-bottle price" loading="lazy"></div></div>
+            <div><div class="cap v">Variant</div><div class="ph"><img src="assets/polar-ab-pdp-3-1-variant.webp" alt="Variant: 2 bottles selected, per-bottle price and the order total on the button" loading="lazy"></div></div>
+          </div>
+          <div class="ctx">The ladder's win came from 1-bottle buyers stepping up to 2, so the next test opened the page with 2 selected, a per-bottle price and the order total on the button. The bigger first number pushed people away instead of up. Stopped at two days.</div>
+          <div class="tchips">
+            <div class="tchip down"><div class="v">-8.1%</div><div class="m">Rev / session</div><div class="c">$3.91 to $3.59</div></div>
+            <div class="tchip down"><div class="v">-21.6%</div><div class="m">Add-to-cart</div><div class="c">p &lt; .01</div></div>
+            <div class="tchip down"><div class="v">-8.9%</div><div class="m">Conversion</div><div class="c">p &lt; .01</div></div>
+          </div>
+          <div class="foot">What it taught: the button total is the number people act on. The next iteration keeps 1 selected and makes the step to 2 a single tap.</div>
+        </div>
+
+        <div class="tcard">
+          <div class="tcard-top"><div class="tt-left"><span class="cat-tag">Product Page</span><span class="brand-pill named">Polar Hair Care</span></div><span class="badge loss">Loss, learned</span></div>
+          <h3>Folding shipping into a $39.90 bottle lost 4.6% revenue per visitor</h3>
+          <div class="tshots">
+            <div><div class="cap">Control</div><div class="ph"><img src="assets/polar-ab-pdp-5-1-control.webp" alt="Control: one bottle at $34.95 plus shipping at checkout" loading="lazy"></div></div>
+            <div><div class="cap v">Variant</div><div class="ph"><img src="assets/polar-ab-pdp-5-1-variant.webp" alt="Variant: one bottle at $39.90 with free shipping" loading="lazy"></div></div>
+          </div>
+          <div class="ctx">Shipping cost was a stated blocker in the customer research, so the test sold one bottle at $39.90 with free shipping instead of $34.95 plus $4.95 at checkout. Same money per order. Conversion stayed flat, but 2-bottle orders fell from 25% to 18% of orders: free shipping at one bottle removed the reason to take a second.</div>
+          <div class="tchips">
+            <div class="tchip down"><div class="v">-4.6%</div><div class="m">Rev / visitor</div><div class="c">control 96% to win</div></div>
+            <div class="tchip down"><div class="v">-3.9%</div><div class="m">Order value</div><div class="c">$58.30 to $56.04</div></div>
+            <div class="tchip soft"><div class="v">flat</div><div class="m">Conversion</div><div class="c">6.82% vs 6.78%</div></div>
+          </div>
+          <div class="foot">Also found: a post-purchase upsell never fired for the test's duplicate product, which explained part of the order-value gap. That check is now part of QA for every duplicate-product arm.</div>
+        </div>
+
+        <div class="tcard">
+          <div class="tcard-top"><div class="tt-left"><span class="cat-tag">Product Page</span><span class="brand-pill named">Polar Hair Care</span></div><span class="badge flat">Flat, twice</span></div>
+          <h3>A clinicians' badge changed nothing, under the price or under the guarantee</h3>
+          <div class="tshots">
+            <div><div class="cap">Under the price</div><div class="ph"><img src="assets/polar-ab-pdp-2-1-variant.webp" alt="Variant one: Clinicians' Choice badge directly under the price" loading="lazy"></div></div>
+            <div><div class="cap v">Under the guarantee</div><div class="ph"><img src="assets/polar-ab-pdp-2-2-variant.webp" alt="Variant two: the same badge under the money-back guarantee" loading="lazy"></div></div>
+          </div>
+          <div class="ctx">The audience is 45 to 65 and careful with trust, and the page had peer proof but no expert proof. Two placements, 77K and 45K visitors per side, every metric within 1%. Early refunds leaned higher with the badge both times, so it came off the test list.</div>
+          <div class="tchips">
+            <div class="tchip soft"><div class="v">-0.03%</div><div class="m">Rev / visitor, under price</div><div class="c">48% to win</div></div>
+            <div class="tchip soft"><div class="v">+0.5%</div><div class="m">Rev / visitor, under guarantee</div><div class="c">57% to win</div></div>
+          </div>
+          <div class="foot">What it taught: shoppers who reach the buy box are not short of trust. Expert proof belongs higher in the funnel, if anywhere.</div>
+        </div>
+
+        <div class="tcard">
+          <div class="tcard-top"><div class="tt-left"><span class="cat-tag">Product Page</span><span class="brand-pill">TV frames</span></div><span class="badge win">Win, implementing</span></div>
+          <h3>Removing the Buy it Now button lifted add-to-cart 15.8%</h3>
+          <div class="tshots">
+            <div><div class="cap">Control</div><div class="ph"><img src="assets/enavi-ab-remove-bin-control.webp" alt="Control buy box with Add to Cart and Buy it Now" loading="lazy"></div></div>
+            <div><div class="cap v">Variant</div><div class="ph"><img src="assets/enavi-ab-remove-bin-variant.webp" alt="Variant buy box with Add to Cart only" loading="lazy"></div></div>
+          </div>
+          <div class="ctx">Two calls to action sat side by side on every product page. The variant removed Buy it Now and left one decision. Mobile drove it (+27% add-to-cart) and checkout completion rose from 82.6% to 89.0%.</div>
+          <div class="tchips">
+            <div class="tchip"><div class="v">+15.8%</div><div class="m">Add-to-cart</div><div class="c">99.6% conf</div></div>
+            <div class="tchip"><div class="v">+6.7%</div><div class="m">Conversion</div><div class="c">81% conf</div></div>
+            <div class="tchip"><div class="v">+8.1%</div><div class="m">Rev / visitor</div><div class="c">$23.68 to $25.61</div></div>
+          </div>
+          <div class="foot">14 days · 20K sessions · ~$40K/mo forecast at 70% · the mobile lift appeared after the price moved into the button mid-test, so the two changes are read together</div>
+        </div>
+
+        <div class="tcard">
+          <div class="tcard-top"><div class="tt-left"><span class="cat-tag">Product Page</span><span class="brand-pill">Pet nutrition</span></div><span class="badge dir">Segment win, implementing</span></div>
+          <h3>A one-line serving note under the mobile buy box lifted new-visitor conversion 7.6% and first subscriptions 22%</h3>
+          <div class="tshots">
+            <div><div class="cap">Control</div><div class="ph crop"><img src="assets/enavi-ab-feeding-guide-control.webp" alt="Control: buy box with the feeding guide inside an accordion" loading="lazy"></div></div>
+            <div><div class="cap v">Variant</div><div class="ph crop"><img src="assets/enavi-ab-feeding-guide-variant.webp" alt="Variant: a serving-size line directly under the buy box" loading="lazy"></div></div>
+          </div>
+          <div class="ctx">The earlier feeding-guide win was a desktop win. On mobile the serving size sat inside an accordion people rarely open, so the variant put one line under the buy box. Flat overall, because returning visitors went the other way (-21% conversion). New visitors were the ones who needed it, so it ships to them only.</div>
+          <div class="tchips">
+            <div class="tchip"><div class="v">+7.6%</div><div class="m">Conversion, new</div><div class="c">89% conf</div></div>
+            <div class="tchip"><div class="v">+21.6%</div><div class="m">First subs, new</div><div class="c">98% conf</div></div>
+            <div class="tchip"><div class="v">+16.3%</div><div class="m">Rev / user, new</div><div class="c">97% conf</div></div>
+          </div>
+          <div class="foot">37 days · mobile only · 9K visitors · new vs returning interaction p = 0.005 · ~$10.7K/mo forecast for new visitors</div>
+        </div>
+
 
         <div class="tcard">
           <div class="tcard-top"><div class="tt-left"><span class="cat-tag">Product Page</span><span class="brand-pill">Pet nutrition</span></div><span class="badge win">Implemented</span></div>
@@ -476,6 +674,23 @@
       <div class="tgrid">
 
         <div class="tcard">
+          <div class="tcard-top"><div class="tt-left"><span class="cat-tag">Homepage</span><span class="brand-pill">Pet nutrition</span></div><span class="badge flat">Flat, learned</span></div>
+          <h3>Add-to-basket buttons on the homepage product cards lifted homepage adds 141%, and purchases not at all</h3>
+          <div class="tshots wide">
+            <div><div class="cap">Control</div><div class="dk"><img src="assets/enavi-ab-hp-atc-control.webp" alt="Control: homepage product cards that link to the product page" loading="lazy"></div></div>
+            <div><div class="cap v">Variant</div><div class="dk"><img src="assets/enavi-ab-hp-atc-variant.webp" alt="Variant: homepage product cards with add-to-basket buttons and size dropdowns" loading="lazy"></div></div>
+          </div>
+          <div class="ctx">A retest of an earlier desktop win on the relaunched homepage. Each product card got an add-to-basket button with the price. People used it, but the extra adders did not buy more: overall add-to-cart and purchase rate stayed flat and the test was abandoned.</div>
+          <div class="tchips">
+            <div class="tchip"><div class="v">+141%</div><div class="m">Homepage add-to-cart</div><div class="c">99.9% conf</div></div>
+            <div class="tchip soft"><div class="v">-2.3%</div><div class="m">Add-to-cart, any page</div><div class="c">62% conf</div></div>
+            <div class="tchip soft"><div class="v">-4.8%</div><div class="m">Purchase rate</div><div class="c">70% conf</div></div>
+          </div>
+          <div class="foot">42 days · desktop only · 6K visitors · what it taught: a micro-conversion can double while the macro stays still</div>
+        </div>
+
+
+        <div class="tcard">
           <div class="tcard-top"><div class="tt-left"><span class="cat-tag">Homepage</span><span class="brand-pill">Pet nutrition</span></div><span class="badge win">Implemented</span></div>
           <h3>A family-health homepage section lifted revenue per user 12%</h3>
           <div class="ctx">Swapped an animal-benefit section for a "coop to table" family-health story, pairing an emotional image with social proof and family-framed value props.</div>
@@ -584,6 +799,23 @@
 
     <div class="compactwrap" style="display:none">
       <div class="tgrid">
+
+        <div class="tcard">
+          <div class="tcard-top"><div class="tt-left"><span class="cat-tag">Cart</span><span class="brand-pill named">Polar Hair Care</span></div><span class="badge loss">Loss, learned</span></div>
+          <h3>A compact rewards stepper in the cart lost 4.9% revenue per session</h3>
+          <div class="tshots">
+            <div><div class="cap">Control</div><div class="ph"><img src="assets/polar-ab-cart-1-1-control.webp" alt="Control cart drawer with the upsell cards and free shipping banner" loading="lazy"></div></div>
+            <div><div class="cap v">Variant</div><div class="ph"><img src="assets/polar-ab-cart-1-1-variant.webp" alt="Variant cart drawer with the compact rewards stepper" loading="lazy"></div></div>
+          </div>
+          <div class="ctx">The ladder that won on the product page went into the cart drawer, replacing three separate nudges with one stepper. It cost order value: 3-bottle orders fell from 35.7% to 28.2% of orders and bottles per order from 1.91 to 1.80. Conversion did not move.</div>
+          <div class="tchips">
+            <div class="tchip down"><div class="v">-4.9%</div><div class="m">Rev / session</div><div class="c">92% conf</div></div>
+            <div class="tchip down"><div class="v">-3.6%</div><div class="m">Order value</div><div class="c">$58.97 to $56.82</div></div>
+            <div class="tchip soft"><div class="v">flat</div><div class="m">Conversion</div><div class="c">2.55% vs 2.51%</div></div>
+          </div>
+          <div class="foot">What it taught: the ladder's effect is a product-page effect, decided before the cart opens. The cart kept its cards and banner, which do the upselling.</div>
+        </div>
+
 
         <div class="tcard">
           <div class="tcard-top"><div class="tt-left"><span class="cat-tag">Cart</span><span class="brand-pill">Pet nutrition</span></div><span class="badge win">Implemented</span></div>
@@ -723,6 +955,67 @@
 
 </section>
 
+<section class="block wrap" id="pages">
+  <div class="sec-head"><h2>Landing Pages I've Built</h2><div class="rule"></div></div>
+  <p class="sec-sub">Pages I researched, wrote, designed and shipped for paid traffic. Polar Hair Care pages link to the live page. Agency pages are shown by category with brand marks pixelated.</p>
+  <div class="lp-grid">
+
+    <div class="lp">
+      <div class="ph"><img src="assets/polar-lp-buybox-mobile.webp" alt="Polar Hair Care listicle with the buy box, phone view" loading="lazy"></div>
+      <div class="lp-tags"><span class="cat-tag">Listicle</span><span class="brand-pill named">Polar Hair Care</span></div>
+      <h3>The buy-box listicle</h3>
+      <div class="d">The top paid-social page with the product page's buy box rebuilt as theme snippets and placed where the page had been sending people away. Every CTA scrolls to it.</div>
+      <div class="r">+12.8% revenue per visitor in the A/B test. Now the evergreen page.</div>
+      <div class="foot"><span>Shopify theme + GemPages · 2026</span><a href="https://polarhaircare.com/pages/instantly-reverse-grays" target="_blank" rel="noopener">Live page &rarr;</a></div>
+    </div>
+
+    <div class="lp">
+      <div class="ph"><img src="assets/polar-lp-headless-mobile.webp" alt="Polar Hair Care headless listicle rebuilt for speed, phone view" loading="lazy"></div>
+      <div class="lp-tags"><span class="cat-tag">Speed rebuild</span><span class="brand-pill named">Polar Hair Care</span></div>
+      <h3>The headless listicle, rebuilt for speed</h3>
+      <div class="d">A like-for-like copy of the headless listicle with the 5.5 MB hero video deferred behind a preloaded poster, media re-encoded, sections lazy-loaded and a 60 KB marquee cut to 14 KB.</div>
+      <div class="r">LCP 13.5 s to 4.8 s, page weight 11.5 MB to 6.2 MB, same renderer, same sections.</div>
+      <div class="foot"><span>Headless storefront · 2026</span><a href="https://try.polarhaircare.com/instantly-reverse-grays-hl" target="_blank" rel="noopener">Live page &rarr;</a></div>
+    </div>
+
+    <div class="lp">
+      <div class="ph"><img src="assets/polar-lp-salon-mobile.webp" alt="Polar Hair Care salon listicle, phone view" loading="lazy"></div>
+      <div class="lp-tags"><span class="cat-tag">Persona listicle</span><span class="brand-pill named">Polar Hair Care</span></div>
+      <h3>The salon listicle</h3>
+      <div class="d">A page for women still paying for salon colour, written from the persona research and designed in Figma on the brand system, then handed to the developer as Shopify sections.</div>
+      <div class="r soft">Live since September 2026. First paid traffic pending.</div>
+      <div class="foot"><span>Figma to Shopify · 2026</span><a href="https://polarhaircare.com/pages/salon-grays-at-home" target="_blank" rel="noopener">Live page &rarr;</a></div>
+    </div>
+
+    <div class="lp">
+      <div class="ph"><img src="assets/enavi-lp-ribeye-mobile.webp" alt="Meat snack ribeye landing page, phone view, brand marks pixelated" loading="lazy"></div>
+      <div class="lp-tags"><span class="cat-tag">Product LP</span><span class="brand-pill">Meat snacks</span></div>
+      <h3>The ribeye landing page</h3>
+      <div class="d">A paid-social destination for one hero product, built in Replo: first-order offer up top, review strip, product imagery, benefit copy and a buy box.</div>
+      <div class="r">+34% revenue per visitor against the product page in a split-URL test (90% probability, offer included).</div>
+      <div class="foot"><span>Replo on Shopify · 2026</span><span>Brand withheld</span></div>
+    </div>
+
+    <div class="lp">
+      <div class="ph"><img src="assets/enavi-lp-petproof-mobile.webp" alt="Pet-friendly sofa cover landing page, phone view, brand marks pixelated" loading="lazy"></div>
+      <div class="lp-tags"><span class="cat-tag">Hero LP</span><span class="brand-pill">Furniture covers</span></div>
+      <h3>The pet-friendly sofa-cover page</h3>
+      <div class="d">The first page out of my multi-agent landing page system: brief to research to copy to a Replo/Liquid build, aimed at pet owners buying a free fabric sample before the cover.</div>
+      <div class="r">Cost per sample request 64% below the homepage over its first five weeks, sample conversion 2.03% to 4.07%.</div>
+      <div class="foot"><span>Replo/Liquid, AI pipeline · 2026</span><span>Brand withheld</span></div>
+    </div>
+
+    <div class="lp">
+      <div class="ph"><img src="assets/enavi-lp-backpain-mobile.webp" alt="Back pain relief direct-response landing page, phone view, brand marks pixelated" loading="lazy"></div>
+      <div class="lp-tags"><span class="cat-tag">Direct response LP</span><span class="brand-pill">Pain relief</span></div>
+      <h3>The back-pain sales page</h3>
+      <div class="d">A long-form direct-response page for a stretching device, built as the second step after a back-pain listicle: mechanism, proof, objections, buy box.</div>
+      <div class="r">Readers who click through from the listicle buy at 11.8%. Same-session conversion 2.02% vs 1.55% for the product page (p = 0.037).</div>
+      <div class="foot"><span>Shopify · 2026</span><span>Brand withheld</span></div>
+    </div>
+  </div>
+</section>
+
 <section class="block wrap" id="ai">
   <div class="sec-head"><h2>AI Systems I've Built</h2><div class="rule"></div></div>
   <p class="sec-sub">I build my own tooling to compound what one CRO lead can do, from research to a shipped page.</p>
@@ -730,7 +1023,7 @@
     <div class="ai">
       <div class="t">Multi-Agent Landing Page System</div>
       <div class="s">Python · Claude API · multi-agent orchestration</div>
-      <div class="d">End-to-end pipeline from brief to a production Replo/Liquid build. Its first live page became the top paid-social destination for a furniture brand at <b>9.35x ROAS</b> and about half the homepage's cost-per-conversion.</div>
+      <div class="d">End-to-end pipeline from brief to a production Replo/Liquid build. Its first live page, a pet-friendly sofa-cover page for a furniture brand, brought the <b>cost per sample request down 64%</b> against the homepage over its first five weeks. Sample conversion went from 2.03% to 4.07%.</div>
     </div>
     <div class="ai">
       <div class="t">Notion AI Research Co-Pilot</div>
