@@ -160,6 +160,7 @@
   .dk{border:1px solid var(--line);border-radius:8px;overflow:hidden;background:#fff;box-shadow:0 4px 14px rgba(14,42,71,.10)}
   .dk img{display:block;width:100%}
   .tshots.wide{max-width:none;grid-template-columns:1fr 1fr}
+  @media(max-width:600px){.tshots.wide{grid-template-columns:1fr}}
 
   /* Landing pages */
   .lp-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
@@ -292,7 +293,7 @@
             <div class="res"><div class="v">+8.2%</div><div class="m">Conversion</div><div class="c">3.04% to 3.29%</div></div>
             <div class="res"><div class="v">+17%</div><div class="m">Add-to-cart</div><div class="c">day-5 read</div></div>
           </div>
-          <div class="step outcome"><div class="k">What it proved</div><p>Desktop and returning visitors moved most. A user-level cross-read in GA came in flatter (+3.5% revenue per user) because the variant lost more GA tracking on iPhone. So I stamped the page into the cart attributes and read the holdout from Shopify orders instead. Called a winner. It is now the evergreen page, running with a 90/10 holdout, and the base for the next tests.</p></div>
+          <div class="step outcome"><div class="k">What it proved</div><p>Desktop and returning visitors moved most. A user-level cross-read in GA came in flatter (+3.4% revenue per user) because the variant lost more GA tracking on iPhone. So I stamped the page into the cart attributes and read the holdout from Shopify orders instead. Called a winner. It is now the evergreen page, running with a 90/10 holdout, and the base for the next tests.</p></div>
         </div>
         <div class="ba">
           <div class="ba-title">Listicle, bottom of the page</div>
@@ -407,7 +408,7 @@
           </div>
           <div class="ctx">The ladder's win came from 1-bottle buyers stepping up to 2, so the next test opened the page with 2 selected, a per-bottle price and the order total on the button. The bigger first number pushed people away instead of up. Stopped at two days.</div>
           <div class="tchips">
-            <div class="tchip down"><div class="v">-8.1%</div><div class="m">Rev / session</div><div class="c">$3.91 to $3.59</div></div>
+            <div class="tchip down"><div class="v">-8.1%</div><div class="m">Rev / session</div><div class="c">over 2 days</div></div>
             <div class="tchip down"><div class="v">-21.6%</div><div class="m">Add-to-cart</div><div class="c">p &lt; .01</div></div>
             <div class="tchip down"><div class="v">-8.9%</div><div class="m">Conversion</div><div class="c">p &lt; .01</div></div>
           </div>
@@ -424,7 +425,7 @@
           <div class="ctx">Shipping cost was a stated blocker in the customer research, so the test sold one bottle at $39.90 with free shipping instead of $34.95 plus $4.95 at checkout. Same money per order. Conversion stayed flat, but 2-bottle orders fell from 25% to 18% of orders: free shipping at one bottle removed the reason to take a second.</div>
           <div class="tchips">
             <div class="tchip down"><div class="v">-4.6%</div><div class="m">Rev / visitor</div><div class="c">control 96% to win</div></div>
-            <div class="tchip down"><div class="v">-3.9%</div><div class="m">Order value</div><div class="c">$58.30 to $56.04</div></div>
+            <div class="tchip down"><div class="v">-3.9%</div><div class="m">Order value</div><div class="c">control clear winner</div></div>
             <div class="tchip soft"><div class="v">flat</div><div class="m">Conversion</div><div class="c">6.82% vs 6.78%</div></div>
           </div>
           <div class="foot">Also found: a post-purchase upsell never fired for the test's duplicate product, which explained part of the order-value gap. That check is now part of QA for every duplicate-product arm.</div>
@@ -810,7 +811,7 @@
           <div class="ctx">The ladder that won on the product page went into the cart drawer, replacing three separate nudges with one stepper. It cost order value: 3-bottle orders fell from 35.7% to 28.2% of orders and bottles per order from 1.91 to 1.80. Conversion did not move.</div>
           <div class="tchips">
             <div class="tchip down"><div class="v">-4.9%</div><div class="m">Rev / session</div><div class="c">92% conf</div></div>
-            <div class="tchip down"><div class="v">-3.6%</div><div class="m">Order value</div><div class="c">$58.97 to $56.82</div></div>
+            <div class="tchip down"><div class="v">-3.6%</div><div class="m">Order value</div><div class="c">100% conf</div></div>
             <div class="tchip soft"><div class="v">flat</div><div class="m">Conversion</div><div class="c">2.55% vs 2.51%</div></div>
           </div>
           <div class="foot">What it taught: the ladder's effect is a product-page effect, decided before the cart opens. The cart kept its cards and banner, which do the upselling.</div>
@@ -957,7 +958,7 @@
 
 <section class="block wrap" id="pages">
   <div class="sec-head"><h2>Landing Pages I've Built</h2><div class="rule"></div></div>
-  <p class="sec-sub">Pages I researched, wrote, designed and shipped for paid traffic. Polar Hair Care pages link to the live page. Agency pages are shown by category with brand marks pixelated.</p>
+  <p class="sec-sub">Pages I built or rebuilt for paid traffic. Polar Hair Care pages link to the live page. Agency pages are shown by category with brand marks pixelated.</p>
   <div class="lp-grid">
 
     <div class="lp">
